@@ -125,6 +125,16 @@ Application URL:
 http://localhost:8000
 ```
 
-## Live link
+## Live Deployment
 
-Added in Week 2.
+**Live API:** https://seedpitch.onrender.com
+
+**API Documentation:** https://seedpitch.onrender.com/docs
+
+**Health Check:** https://seedpitch.onrender.com/health
+
+### Deployment
+- Platform: Render
+- Framework: FastAPI
+- LLM: Google Gemini
+- Containerization: Docker
