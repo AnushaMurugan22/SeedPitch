@@ -1,6 +1,5 @@
 
 import csv
-import os
 
 manifest = "data/manifest.csv"
 readme = "README.md"

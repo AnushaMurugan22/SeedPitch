@@ -1,4 +1,7 @@
 fastapi>=0.115
 uvicorn[standard]>=0.30
 pydantic-settings>=2.4
-requests == 2.34.2
+requests==2.34.2
+google-genai
+tenacity
+psycopg[binary]>=3.2
