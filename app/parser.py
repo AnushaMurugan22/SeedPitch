@@ -1,4 +1,6 @@
 import pymupdf
+
+
 def parse_pdf(pdf_path):
     document = pymupdf.open(pdf_path)
 

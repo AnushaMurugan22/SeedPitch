@@ -1,14 +1,14 @@
 
 import json
-import time
 import sys
+import time
 from pathlib import Path
 
 import psycopg
 from google import genai
 from google.genai.errors import ClientError
-from pgvector.psycopg import register_vector
 from pgvector import Vector
+from pgvector.psycopg import register_vector
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
@@ -25,7 +25,7 @@ def main():
     client = genai.Client(api_key=settings.gemini_api_key)
 
     # Read all chunks
-    with open("data/processed/chunks.jsonl", "r", encoding="utf-8") as file:
+    with open("data/processed/chunks.jsonl", encoding="utf-8") as file:
         chunks = [json.loads(line) for line in file if line.strip()]
 
     print("Total chunks found:", len(chunks))

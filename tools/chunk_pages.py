@@ -1,5 +1,4 @@
 import json
-from pathlib import Path
 import sys
 from pathlib import Path
 
@@ -14,7 +13,7 @@ OUTPUT_FILE = Path("data/processed/chunks.jsonl")
 def main():
     total_chunks = 0
 
-    with open(INPUT_FILE, "r", encoding="utf-8") as source:
+    with open(INPUT_FILE, encoding="utf-8") as source:
         with open(OUTPUT_FILE, "w", encoding="utf-8") as output:
 
             for line in source:

@@ -10,10 +10,9 @@ from pydantic import BaseModel
 from tenacity import retry, stop_after_attempt, wait_exponential
 
 from app.config import Settings, get_settings
-from app.usage import get_usage_summary, log_usage
 from app.embeddings import generate_embedding
 from app.retriever import search_documents
-
+from app.usage import get_usage_summary, log_usage
 
 app = FastAPI(title="SeedPitch", version="0.1.0")
 
