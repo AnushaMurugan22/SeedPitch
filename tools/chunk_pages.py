@@ -15,7 +15,6 @@ def main():
 
     with open(INPUT_FILE, encoding="utf-8") as source:
         with open(OUTPUT_FILE, "w", encoding="utf-8") as output:
-
             for line in source:
                 page = json.loads(line)
 
@@ -27,12 +26,10 @@ def main():
                         "page_number": page["page_number"],
                         "headings": page["headings"],
                         "chunk_number": index,
-                        "text": chunk
+                        "text": chunk,
                     }
 
-                    output.write(
-                        json.dumps(record, ensure_ascii=False) + "\n"
-                    )
+                    output.write(json.dumps(record, ensure_ascii=False) + "\n")
 
                     total_chunks += 1
 

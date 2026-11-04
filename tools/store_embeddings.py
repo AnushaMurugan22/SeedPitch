@@ -1,4 +1,3 @@
-
 import json
 import sys
 import time
@@ -38,7 +37,6 @@ def main():
 
         with connection.cursor() as cursor:
             for chunk in chunks:
-
                 # Check whether chunk already exists
                 cursor.execute(
                     """
@@ -98,10 +96,7 @@ def main():
 
                 stored += 1
 
-                print(
-                    f"Stored: {stored} | "
-                    f"{chunk['document']} | Page {chunk['page_number']}"
-                )
+                print(f"Stored: {stored} | {chunk['document']} | Page {chunk['page_number']}")
 
                 time.sleep(1.5)
 

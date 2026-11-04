@@ -7,7 +7,6 @@ def parse_pdf(pdf_path):
     extracted_data = []
 
     for page_number, page in enumerate(document, start=1):
-
         blocks = page.get_text("dict")["blocks"]
 
         page_text = []
@@ -19,7 +18,6 @@ def parse_pdf(pdf_path):
 
             for line in block["lines"]:
                 for span in line["spans"]:
-
                     text = span["text"].strip()
 
                     if not text:
@@ -31,11 +29,9 @@ def parse_pdf(pdf_path):
                     if span["size"] >= 14 or "bold" in span["font"].lower():
                         headings.append(text)
 
-        extracted_data.append({
-            "page_number": page_number,
-            "headings": headings,
-            "text": "\n".join(page_text)
-        })
+        extracted_data.append(
+            {"page_number": page_number, "headings": headings, "text": "\n".join(page_text)}
+        )
 
     document.close()
 

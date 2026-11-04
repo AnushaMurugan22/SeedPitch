@@ -26,12 +26,14 @@ def search_documents(database_url, query_embedding, limit=8):
             rows = cursor.fetchall()
 
             for row in rows:
-                results.append({
-                    "document": row[0],
-                    "page_number": row[1],
-                    "chunk_number": row[2],
-                    "headings": row[3],
-                    "content": row[4],
-                })
+                results.append(
+                    {
+                        "document": row[0],
+                        "page_number": row[1],
+                        "chunk_number": row[2],
+                        "headings": row[3],
+                        "content": row[4],
+                    }
+                )
 
     return results

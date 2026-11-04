@@ -1,4 +1,3 @@
-
 from typing import Annotated
 
 import psycopg
@@ -24,6 +23,7 @@ FALLBACK_MODEL = "gemini-3.5-flash-lite"
 
 # Request and response models
 
+
 class ChatRequest(BaseModel):
     message: str
 
@@ -40,6 +40,7 @@ class AskRequest(BaseModel):
 
 # Gemini client
 
+
 def get_client(api_key: str):
     return genai.Client(
         api_key=api_key,
@@ -48,6 +49,7 @@ def get_client(api_key: str):
 
 
 # Retry primary model up to 3 times
+
 
 @retry(
     stop=stop_after_attempt(3),
@@ -62,6 +64,7 @@ def generate_primary(client, message: str):
 
 
 # Primary model with fallback
+
 
 def generate_answer(client, message: str):
     try:
@@ -85,16 +88,13 @@ def generate_answer(client, message: str):
 
 # Save token usage
 
+
 def save_usage(response, model, settings):
     usage = response.usage_metadata
 
-    input_tokens = (
-        usage.prompt_token_count or 0 if usage else 0
-    )
+    input_tokens = usage.prompt_token_count or 0 if usage else 0
 
-    output_tokens = (
-        usage.candidates_token_count or 0 if usage else 0
-    )
+    output_tokens = usage.candidates_token_count or 0 if usage else 0
 
     log_usage(
         model=model,
@@ -107,12 +107,14 @@ def save_usage(response, model, settings):
 
 # Home endpoint
 
+
 @app.get("/")
 def home():
     return {"message": "Welcome to SeedPitch API"}
 
 
 # Health endpoint
+
 
 @app.get("/health")
 def health(settings: SettingsDep):
@@ -125,6 +127,7 @@ def health(settings: SettingsDep):
 
 # Database health endpoint
 
+
 @app.get("/db-health")
 def database_health(settings: SettingsDep):
     try:
@@ -132,12 +135,8 @@ def database_health(settings: SettingsDep):
             settings.database_url,
             connect_timeout=5,
         ) as connection:
-
             with connection.cursor() as cursor:
-                cursor.execute(
-                    "SELECT extversion FROM pg_extension "
-                    "WHERE extname = 'vector'"
-                )
+                cursor.execute("SELECT extversion FROM pg_extension WHERE extname = 'vector'")
                 result = cursor.fetchone()
 
         if result is None:
@@ -165,6 +164,7 @@ def database_health(settings: SettingsDep):
 
 
 # Normal chat endpoint
+
 
 @app.post("/chat", response_model=ChatResponse)
 def chat(request: ChatRequest, settings: SettingsDep):
@@ -201,6 +201,7 @@ def chat(request: ChatRequest, settings: SettingsDep):
 
 
 # Streaming endpoint
+
 
 @app.post("/chat/stream")
 def chat_stream(request: ChatRequest, settings: SettingsDep):
@@ -241,12 +242,14 @@ def chat_stream(request: ChatRequest, settings: SettingsDep):
 
 # Usage endpoint
 
+
 @app.get("/usage")
 def usage():
     return get_usage_summary()
 
 
 # Document question-answering endpoint
+
 
 @app.post("/ask")
 def ask(request: AskRequest, settings: SettingsDep):
@@ -286,9 +289,7 @@ def ask(request: AskRequest, settings: SettingsDep):
 
         for item in results:
             context += (
-                f"\nDocument: {item['document']}\n"
-                f"Page: {item['page_number']}\n"
-                f"Content: {item['content']}\n"
+                f"\nDocument: {item['document']}\nPage: {item['page_number']}\nContent: {item['content']}\n"
             )
 
         prompt = f"""

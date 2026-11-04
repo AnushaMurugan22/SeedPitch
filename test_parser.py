@@ -1,4 +1,3 @@
-
 from app.parser import parse_pdf
 
 pdf_path = "data/raw/guidelines.pdf"

@@ -1,4 +1,3 @@
-
 import csv
 import hashlib
 import os
@@ -13,9 +12,7 @@ import requests
 RAW = "data/raw"
 MANIFEST = "data/manifest.csv"
 
-HEADERS = {
-    "User-Agent": "ExamateStudentProject/1.0 (learning project; contact: your-email@example.com)"
-}
+HEADERS = {"User-Agent": "ExamateStudentProject/1.0 (learning project; contact: your-email@example.com)"}
 
 DELAY = 2
 robots = {}
@@ -53,9 +50,7 @@ def main(list_file):
         log = csv.writer(mf)
 
         if new_manifest:
-            log.writerow(
-                ["file", "source_url", "downloaded_on", "bytes", "sha256"]
-            )
+            log.writerow(["file", "source_url", "downloaded_on", "bytes", "sha256"])
 
         with open(list_file, encoding="utf-8") as fh:
             urls = [u.strip() for u in fh]

@@ -1,4 +1,3 @@
-
 def create_chunks(text, chunk_size=1000, overlap=150):
     chunks = []
 

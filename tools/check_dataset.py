@@ -1,4 +1,3 @@
-
 import csv
 
 manifest = "data/manifest.csv"
@@ -10,8 +9,4 @@ with open(manifest, encoding="utf-8") as file:
 print("Downloaded PDFs:", len(rows))
 
 for row in rows:
-    print(
-        row["file"],
-        row["pages"],
-        "pages"
-    )
+    print(row["file"], row["pages"], "pages")

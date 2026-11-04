@@ -30,9 +30,7 @@ def main():
     total_pages = 0
 
     with open(OUTPUT_FILE, "w", encoding="utf-8") as output:
-
         for pdf_path in pdf_files:
-
             file_hash = get_file_hash(pdf_path)
 
             if file_hash in seen_files:
@@ -50,12 +48,10 @@ def main():
                     "document": pdf_path.name,
                     "page_number": page["page_number"],
                     "headings": page["headings"],
-                    "text": page["text"]
+                    "text": page["text"],
                 }
 
-                output.write(
-                    json.dumps(record, ensure_ascii=False) + "\n"
-                )
+                output.write(json.dumps(record, ensure_ascii=False) + "\n")
 
                 total_pages += 1
 

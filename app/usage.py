@@ -1,4 +1,3 @@
-
 import json
 from datetime import UTC, datetime
 from pathlib import Path
@@ -11,10 +10,7 @@ def log_usage(model, input_tokens, output_tokens, input_rate, output_rate):
 
     total_tokens = input_tokens + output_tokens
 
-    estimated_cost = (
-        input_tokens * input_rate
-        + output_tokens * output_rate
-    ) / 1_000_000
+    estimated_cost = (input_tokens * input_rate + output_tokens * output_rate) / 1_000_000
 
     record = {
         "timestamp": datetime.now(UTC).isoformat(),
@@ -53,8 +49,6 @@ def get_usage_summary():
         "total_input_tokens": sum(r["input_tokens"] for r in records),
         "total_output_tokens": sum(r["output_tokens"] for r in records),
         "total_tokens": sum(r["total_tokens"] for r in records),
-        "estimated_cost": round(
-            sum(r["estimated_cost"] for r in records), 8
-        ),
+        "estimated_cost": round(sum(r["estimated_cost"] for r in records), 8),
         "currency": "USD",
     }
